@@ -1,8 +1,12 @@
-const { Events, PermissionsBitField } = require('discord.js');
+const { Events, PermissionsBitField, MessageFlags } = require('discord.js');
 
 module.exports = {
   name: Events.InteractionCreate,
   execute: async (interaction) => {
+    let donoBot = '983856696399134751';
+    let manuntencao = false;
+    let motivoManuntencao = 'Indefinido.';
+
     if (interaction.isChatInputCommand()) {
 
       const clientCommand = interaction.client.slashCommands.get(interaction.commandName);
@@ -20,15 +24,19 @@ module.exports = {
         }
       }
 
+        if (manuntencao === true && interaction.user.id !== donoBot) {
+          return interaction.reply({ content: `**<:x_error:1268273212400074825> | Não é possível exexutar meus comandos, pois estou em manutenção! Motivo: \`${motivoManuntencao}\`**`, flags: MessageFlags.Ephemeral });
+      }
+
       try {
         clientCommand.execute(interaction);
       } catch (error) {
         console.error(error);
         if (interaction.replied || interaction.deferred) {
-	  await interaction.followUp({ content: 'Houve um erro ao executar!', flags: MessageFlags.Ephemeral });
-	} else {
-	  await interaction.reply({ content: 'Houve um erro ao executar!', flags: MessageFlags.Ephemeral });
-        }
+			       await interaction.followUp({ content: 'Houve um erro ao executar!', flags: MessageFlags.Ephemeral });
+		      } else {
+			       await interaction.reply({ content: 'Houve um erro ao executar!', flags: MessageFlags.Ephemeral });
+		      }
       }
     }
   }
