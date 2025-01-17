@@ -36,7 +36,7 @@ module.exports = {
         return interaction.reply({ content: `**<:x_error:1319711413459095592> | Só é possível executar este comando em servidores!**`, flags: MessageFlags.Ephemeral });
       }
 
-      let dono = await interaction.client.users.fetch(interaction.guild.ownerId).catch(() => "Usuário não encontrado!");
+      let dono = await interaction.client.users.cache.get(interaction.guild.ownerId);
       let icon = interaction.guild.iconURL({ size: 4096, dynamic: true });
 
       let embed = new EmbedBuilder()
@@ -44,7 +44,7 @@ module.exports = {
       .setAuthor({ name: `${interaction.guild.name} (${interaction.guild.id})` })
       .addFields(
       { name: '**<:coroa:1321585376405749902> Dono do servidor:**', value: `${dono.username} (${dono.id})` },
-      { name: '**<:pessoas:1321585788755902511> Quantidade de membros:**', value: `${interaction.guild.members.cache.filter(u => !u.bot).size} (${interaction.guild.members.cache.size} se considerarmos os bots).` },
+      { name: '**<:pessoas:1321585788755902511> Quantidade de membros:**', value: `${interaction.guild.members.cache.filter(u => !u.user.bot).size} (${interaction.guild.members.cache.size} se considerarmos os bots).` },
       { name: '**<:calendario:1321585569523826790> Data de criação do servidor:**', value: `<t:${Math.trunc(interaction.guild.createdTimestamp / 1000)}:F> (<t:${Math.trunc(interaction.guild.createdTimestamp / 1000)}:R>).` },
       { name: '**💼 Cargos do servidor:**', value: `${interaction.guild.roles.cache.map(r => r.name).join(", ")}.` }
       )
