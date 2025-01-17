@@ -4,7 +4,7 @@ module.exports = {
   data: new SlashCommandBuilder()
   .setName('icon')
   .setDescription('[UTILIDADES] Veja o ícone de um servidor ou usuário.')
-  .addSubcommand(subcommand => subcommand.setName('user').setDescription('[[UTILIDADES] Veja a foto de perfil de um usuário.').addUserOption(option => option.setName('usuário').setDescription('Mencione algum usuário.'))).addSubcommand(subcommand => subcommand.setName('guild').setDescription('[UTILIDADES] Veja o ícone de algum servidor.')),
+  .addSubcommand(subcommand => subcommand.setName('user').setDescription('[UTILIDADES] Veja a foto de perfil de um usuário.').addUserOption(option => option.setName('usuário').setDescription('Mencione algum usuário.'))).addSubcommand(subcommand => subcommand.setName('guild').setDescription('[UTILIDADES] Veja o ícone de algum servidor.')),
 
   execute: async (interaction) => {
     let subcommand = interaction.options.getSubcommand();
