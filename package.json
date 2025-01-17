@@ -1,6 +1,6 @@
 {
   "name": "galtbot",
-  "version": "1.3.0",
+  "version": "1.8.0",
   "description": "Um simples bot para o Discord com o objetivo de ajudar os servidores da melhor forma possível.",
   "main": "index.js",
   "scripts": {
