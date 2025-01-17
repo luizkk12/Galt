@@ -1,0 +1,22 @@
+{
+  "name": "galtbot",
+  "version": "1.0.0",
+  "description": "Um simples bot para o Discord com o objetivo de ajudar os servidores da melhor forma possível.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Olá mundo!\\\""
+  },
+  "keywords": [
+    "bot",
+    "discordbot",
+    "mod",
+    "fun",
+    "economy",
+    "utils"
+  ],
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "discord.js": "^14.17.3"
+  }
+}
