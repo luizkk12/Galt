@@ -33,7 +33,7 @@ module.exports = {
           if ((mensagem.includes('@everyone') || mensagem.includes('@here')) && !authorMember.permissions.has(PermissionsBitField.Flags.MentionEveryone)) {
             await interaction.reply({ content: `**<:x_error:1319711413459095592> | Você não tem permissão de mencionar "everyone" e "here" na mensagem!**`, flags: MessageFlags.Ephemeral });
           } else {
-            canal.send(mensagem).catch(() => interaction.reply({ content: `**<:x_error:1319711413459095592> | Não foi possível enviar a mensagem.**`, flags: MessageFlags.Ephemeral }));
+            canal.send(mensagem);
 
              interaction.reply({ content: `**<a:success:1320748734593765428> | Mensagem enviada com sucesso!**`, flags: MessageFlags.Ephemeral });
           }
