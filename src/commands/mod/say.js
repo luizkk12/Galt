@@ -5,10 +5,13 @@ module.exports = {
   .setName('say')
   .setDescription('[MODERAÇÃO] Faça-me falar algo por você.')
   .addStringOption(option => option.setName('mensagem').setDescription('Escreva uma mensagem.').setRequired(true))
-  .addChannelOption(option => option.setName('canal').setDescription('Mencione algum canal.'))
-  .setContexts(InteractionContextType.Guild),
+  .addChannelOption(option => option.setName('canal').setDescription('Mencione algum canal.')),
 
   execute: async (interaction) => {
+    if (!interaction.guild) {
+      return interaction.reply({ content: `**<:x_error:1319711413459095592> | Só é possível executar este comando em servidores!**`, flags: MessageFlags.Ephemeral });
+    }
+
     let canal = interaction.options.getChannel('canal') ?? interaction.channel;
     let mensagem = interaction.options.getString('mensagem');
     let authorMember = interaction.guild.members.cache.get(interaction.user.id);
