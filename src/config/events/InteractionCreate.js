@@ -1,4 +1,7 @@
-const { Events, PermissionsBitField, MessageFlags } = require('discord.js');
+const { Events, PermissionsBitField, EmbedBuilder, MessageFlags } = require('discord.js');
+const { conectar, verificarUsuario } = require('../database.js');
+
+conectar();
 
 module.exports = {
   name: Events.InteractionCreate,
@@ -26,6 +29,19 @@ module.exports = {
 
         if (manuntencao === true && interaction.user.id !== donoBot) {
           return interaction.reply({ content: `**<:x_error:1268273212400074825> | Não é possível exexutar meus comandos, pois estou em manutenção! Motivo: \`${motivoManuntencao}\`**`, flags: MessageFlags.Ephemeral });
+      }
+
+      let user = await verificarUsuario(interaction.user.id);
+
+      if (String(user.blacklist) === 'sim') {
+        let embed = new EmbedBuilder()
+        .setTitle(`**🫤 | Eu me recuso!**`)
+        .setDescription(`**<:x_error:1319711413459095592> Você está banido de me usar. Veja os detalhes abaixo.**\n\n__**${user.motivoBlacklist}**__`)
+        .setFooter({ text: `Comando recusado.` })
+        .setColor(0xff0000)
+        .setTimestamp();
+
+        return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
       }
 
       try {
