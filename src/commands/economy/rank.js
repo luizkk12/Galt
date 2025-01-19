@@ -1,6 +1,8 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { conectar, User } = require('../../config/database.js');
 
+conectar();
+
 module.exports = {
   data: new SlashCommandBuilder()
   .setName('rank')
